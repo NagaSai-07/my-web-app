@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    SONAR_TOKEN = credentials('sonarqube1') // Jenkins-stored token
+    //SONAR_TOKEN = credentials('sonarqube1') // Jenkins-stored token
     DOCKER_IMAGE = "my-web-app:${BUILD_NUMBER}"
   }
   stages {
@@ -10,7 +10,7 @@ pipeline {
     }
     stage('SonarQube Analysis') {
       steps {
-        withSonarQubeEnv('SonarQube') {
+        withSonarQubeEnv('sonarqube1') {
           sh "sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
         }
       }
