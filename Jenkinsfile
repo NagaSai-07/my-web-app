@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps { 
-        git 'https://github.com/NagaSai-07/my-web-app'
+        git branch: 'main', url: 'https://github.com/NagaSai-07/my-web-app'
        }
     }
     stage('SonarQube Analysis') {
