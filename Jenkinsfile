@@ -1,17 +1,18 @@
 pipeline {
   agent any
   environment {
-    //SONAR_TOKEN = credentials('sonarqube1') // Jenkins-stored token
     DOCKER_IMAGE = "my-web-app:${BUILD_NUMBER}"
   }
   stages {
     stage('Checkout') {
-      steps { checkout scm }
+      steps { 
+        git 'https://github.com/NagaSai-07/my-web-app'
+       }
     }
     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv('sonarqube1') {
-          sh "sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+            sh 'sonnar-scanner'
         }
       }
     }
